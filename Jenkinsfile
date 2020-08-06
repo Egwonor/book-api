@@ -1,4 +1,7 @@
 pipeline {
+  triggers {
+        pollSCM '* * * * *'
+    }
   environment {
     registry = "ovoh1/bookinventory"
     registryCredential = 'dockerhub'
