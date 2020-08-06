@@ -27,5 +27,12 @@ pipeline {
         }
       }
     }
+    stage('Deploy to AWS cloud formation'){
+      steps{
+        script {
+       
+        }
+      }
+    }
   }
 }
