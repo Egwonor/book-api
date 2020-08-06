@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/Egwonor/book-api.git'
+        git 'https://github.com/lovely-007/book-api.git'
       }
     }
     stage('Building image') {
