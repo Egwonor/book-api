@@ -1,12 +1,4 @@
 pipeline {
-  triggers {
-        pollSCM '* * * * *'
-    }
-  environment {
-    registry = "ovoh1/bookinventory"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-  }
   agent any
   stages {
     stage('Cloning Git') {
@@ -17,23 +9,16 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build ovoh1/bookinventory + ":$BUILD_NUMBER"
         }
       }
     }
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
+          docker.withRegistry( '', dockerhub ) {
             dockerImage.push()
           }
         }
       }
     }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
-  }
-}
