@@ -31,7 +31,7 @@ pipeline {
     stage('Deploy to AWS') {
             steps {
                 withAWS(credentials: 'aws-credentials', region: env.REGION) {
-                    bat './gradlew awsCfnMigrateStack awsCfnWaitStackComplete --stack-name bookInventory -PsubnetId=$SUBNET_ID -PdockerHubUsername=registryName -Pregion=$REGION'
+                    bat './gradlew awsCfnMigrateStack -PsubnetId=$SUBNET_ID -PdockerHubUsername=registryName -Pregion=$REGION'
                 }
              }
         }
