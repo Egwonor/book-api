@@ -27,5 +27,12 @@ pipeline {
         }
       }
     }
+    stage('Deploy to AWS') {
+            steps {
+                withAWS(credentials: 'aws-credentials', region: env.REGION) {
+                    sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=$SUBNET_ID -PdockerHubUsername=registry -Pregion=$REGION'
+                }
+             }
+        }
   }
 }
