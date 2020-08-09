@@ -6,13 +6,13 @@ Parameters:
     Type: String
   ServiceVersion:
     Type: String
-  DockerHubUsername:
+  DockerHubUsername: 
     Type: String
 Resources:
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
-      ClusterName: deployment-example-cluster
+      ClusterName: book-inventory-cluster
   ServiceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -34,7 +34,7 @@ Resources:
         - Name: !Sub ${ServiceName}-container
           Image: !Sub ${DockerHubUsername}/${ServiceName}:${ServiceVersion}
           PortMappings:
-            - ContainerPort: 5000
+            - ContainerPort: 6000
       RequiresCompatibilities:
         - EC2
         - FARGATE
