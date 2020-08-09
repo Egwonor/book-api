@@ -29,9 +29,12 @@ pipeline {
       }
     }
     stage('Deploy to AWS') {
+    environment {
+                DOCKER_HUB_LOGIN = credentials('dockerhub')
+            }
             steps {
                 withAWS(credentials: 'aws-credentials', region: env.REGION) {
-                    bat 'aws cloudformation create-stack --stack-name bookInventory -PsubnetId=$SUBNET_ID -PdockerHubUsername=registryName -Pregion=$REGION'
+                    bat 'aws cloudformation create-stack --stack-name bookInventory -PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR --region 'us-east-1' 
                 }
              }
         }
