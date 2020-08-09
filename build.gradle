@@ -29,6 +29,8 @@ test {
 	useJUnitPlatform()
 }
 
+ String dockerHubUsernameProperty = findProperty('dockerHubUsername') ?: 'ovoh1'
+
 import com.amazonaws.services.cloudformation.model.Capability
 
 aws {
@@ -39,9 +41,9 @@ cloudFormation {
     stackName "$project.name-stack"
     stackParams([
             SubnetID: findProperty('subnetId') ?: '',
-            ServiceName: bookinventory,
+            ServiceName: project.name,
             ServiceVersion: project.version,
-            DockerHubUsername: ovoh1
+            DockerHubUsername: dockerHubUsernameProperty
     ])
     templateFile project.file("ecs.yml")
 }
