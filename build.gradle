@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'jp.classmethod.aws.cloudformation' version '0.41'
 }
 
 group = 'com.ovo'
@@ -26,4 +27,21 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+import com.amazonaws.services.cloudformation.model.Capability
+
+aws {
+    region = findProperty('region') ?: 'us-east-1'
+}
+
+cloudFormation {
+    stackName "$project.name-stack"
+    stackParams([
+            SubnetID: findProperty('subnetId') ?: '',
+            ServiceName: project.name,
+            ServiceVersion: project.version,
+            DockerHubUsername: ovoh1/bookinventory
+    ])
+    templateFile project.file("ecs.yml")
 }
