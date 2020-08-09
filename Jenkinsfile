@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 withAWS(credentials: 'aws-credentials', region: env.REGION) {
-                    bat 'aws cloudformation create-stack --stack-name bookInventory -PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR --region 'us-east-1' 
+                    bat 'aws cloudformation create-stack --stack-name bookInventory -PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR -Pregion=$REGION' 
                 }
              }
         }
