@@ -1,5 +1,6 @@
 pipeline {
   environment {
+    registryName = "ovoh1"
     registry = "ovoh1/bookinventory"
     registryCredential = 'dockerhub'
     dockerImage = ''
@@ -30,7 +31,7 @@ pipeline {
     stage('Deploy to AWS') {
             steps {
                 withAWS(credentials: 'aws-credentials', region: env.REGION) {
-                    bat './gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=$SUBNET_ID -PdockerHubUsername=registry -Pregion=$REGION'
+                    bat './gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=$SUBNET_ID -PdockerHubUsername=registryName -Pregion=$REGION'
                 }
              }
         }

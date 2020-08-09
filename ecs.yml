@@ -34,7 +34,7 @@ Resources:
         - Name: !Sub ${ServiceName}-container
           Image: !Sub ${DockerHubUsername}/${ServiceName}:${ServiceVersion}
           PortMappings:
-            - ContainerPort: 8080
+            - ContainerPort: 5000
       RequiresCompatibilities:
         - EC2
         - FARGATE
