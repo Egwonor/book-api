@@ -7,6 +7,11 @@ pipeline {
   }
   agent any
   stages {
+    stage('Build') {
+            steps {
+                bat './gradlew assemble'
+            }
+        }
     stage('Cloning Git') {
       steps {
         git 'https://github.com/lovely-007/book-api.git'
