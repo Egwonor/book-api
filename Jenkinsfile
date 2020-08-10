@@ -12,9 +12,9 @@ pipeline {
         git 'https://github.com/lovely-007/book-api.git'
       }
     }
-    stage('Build') {
+    stage('Building Jar ') {
             steps {
-                bat './gradlew assemble'
+                bat './gradlew clean build'
             }
         }
     stage('Building image') {
