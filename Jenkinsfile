@@ -17,7 +17,7 @@ stage('CleanWs'){
     }  
    
 stage('Build Common'){
-         sh './gradlew clean build'
+         sh './gradlew'
     }
 stage('Login to ap-south-1 ECR'){
       sh '$(aws ecr get-login --no-include-email --region us-east-1)'
