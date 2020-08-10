@@ -16,7 +16,7 @@ stage('CleanWs'){
                 git 'https://github.com/lovely-007/book-api.git'
     }  
    
-stage('Build Jar'){
+stage('Build Common'){
          bat './gradlew assemble'
     }
 stage('Login to ap-south-1 ECR'){
