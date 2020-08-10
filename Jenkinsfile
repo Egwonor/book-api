@@ -17,10 +17,10 @@ stage('CleanWs'){
     }  
    
 stage('Build Common'){
-         bat './gradlew assemble'
+         sh './gradlew assemble'
     }
 stage('Login to ap-south-1 ECR'){
-      bat '$(aws ecr get-login --no-include-email --region us-east-1)'
+      sh '$(aws ecr get-login --no-include-email --region us-east-1)'
     }
 
 stage('BuildDockerImage'){
