@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 	id 'jp.classmethod.aws.cloudformation' version '0.41'
+	id 'war'
 }
 
 group = 'com.ovo'
