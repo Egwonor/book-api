@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Build jar') {
       steps {
-       bat './gradlew clean build'
+       bat './gradlew assemble'
       }
     }
     stage('Building image') {
