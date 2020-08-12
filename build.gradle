@@ -24,8 +24,8 @@ dependencies {
 	}
 }
 
-jar {
-	enabled = true
+war {
+    enabled = true
 }
 
 test {
